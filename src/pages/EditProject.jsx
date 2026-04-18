@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { Link } from "react-router-dom";
+import { API_URL } from '../config.js';
 
 export default function EditProject() {
   const { id } = useParams();
@@ -22,7 +23,7 @@ export default function EditProject() {
 
   // Fetch project data
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/projects/${id}/`)
+    fetch(`${API_URL}/api/projects/${id}/`)
       .then((res) => res.json())
       .then((data) => {
         setProject(data);

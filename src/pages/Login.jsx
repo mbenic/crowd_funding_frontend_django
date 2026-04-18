@@ -97,6 +97,8 @@ const [loading, setLoading] = useState(false);
     e.preventDefault();
     setLoading(true);
     
+    console.log("API_URL:", API_URL); 
+    
     const res = await fetch(`${API_URL}/api/login/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },

@@ -33,7 +33,7 @@ export default function CreateProject() {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:8000/api/projects/", {
+      const res = await fetch(`${API_URL}/api/projects/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

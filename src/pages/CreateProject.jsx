@@ -16,6 +16,8 @@ export default function CreateProject() {
     is_open: true,
   });
 
+  
+  const [loading, setLoading] = useState(false);
 
   // if (!user) {
   //   navigate("/login"); // redirect if not logged in
@@ -27,7 +29,7 @@ export default function CreateProject() {
   if (!user) return <Navigate to="/login" />;
 
 
-  const [loading, setLoading] = useState(false);
+ 
 
   const handleSubmit = async (e) => {
     e.preventDefault();

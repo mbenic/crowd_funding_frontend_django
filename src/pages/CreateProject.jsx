@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { API_URL } from "../config";
+import { Navigate } from "react-router-dom";
 
 export default function CreateProject() {
   const { user, token } = useContext(AuthContext);
@@ -16,10 +17,14 @@ export default function CreateProject() {
   });
 
 
-  if (!user) {
-    navigate("/login"); // redirect if not logged in
-    return null;
-  }
+  // if (!user) {
+  //   navigate("/login"); // redirect if not logged in
+  //   return null;
+  // }
+
+  if (user === null) return <p>Loading...</p>;
+
+  if (!user) return <Navigate to="/login" />;
 
 
   const [loading, setLoading] = useState(false);

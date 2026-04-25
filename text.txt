@@ -81,3 +81,42 @@ Centralizes auth logic in one place.
 Makes state management cleaner for login/logout and conditional rendering.
 
 If you want, I can make a React + Vite snippet with AuthContext ready for your project, including login, logout, and protected routes — so you can drop it in and it works.
+
+
+
+SPAs
+
+404s in React SPAs using React Router usually happen because the server doesn’t know about your client-side routes. The browser asks the server for /dashboard, but the server looks for a real /dashboard file → doesn’t find it → returns 404.
+
+In an SPA, you actually want every route to serve index.html, and let React Router handle the routing.
+
+Why this works
+
+React Router uses client-side routing, meaning:
+
+/about is NOT a real file
+It’s just a React component rendered based on the URL
+
+So the server must always serve the same entry point (index.html), and let React decide what to show.
+
+⚠️ Common mistakes
+Only testing navigation via <Link> (works fine)
+But refreshing or directly visiting /route → 404
+Forgetting to configure the server fallback
+
+🧠 Why you can’t truly “refresh the same page”
+
+With a React SPA using React Router:
+
+/projects/1 is not a real page on the server
+It’s just a route handled in the browser
+When you hit refresh:
+The browser asks the server (Vercel) for /projects/1
+The server must return something
+
+Since there’s no actual /projects/1.html, the only valid thing the server can send is:
+👉 index.html
+
+So even though it feels like a “redirect,” it’s actually:
+
+Serve index.html, then React re-renders /projects/1
